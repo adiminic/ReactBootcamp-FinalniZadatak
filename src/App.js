@@ -1,17 +1,17 @@
 import LoginPage from "./pages/LoginPage";
 import "./App.css";
 import "antd/dist/antd.css";
-import TodoList from "./components/TodoList";
 import { useData } from "./utils/useData";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  //const { isLoggedIn } = useData();
-  const { isLoggedIn } = true;
+  const { isLoggedIn } = useData();
+
   return (
     <div>
       {console.log(isLoggedIn)}
-      {isLoggedIn && <LoginPage />}
-      {!isLoggedIn && <TodoList />}
+      {!isLoggedIn && <LoginPage />}
+      {isLoggedIn && <HomePage />}
     </div>
   );
 }

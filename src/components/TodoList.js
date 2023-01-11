@@ -1,3 +1,5 @@
+import { Button } from "antd";
+import { Link } from "react-router-dom";
 import { useData } from "../utils/useData";
 import Todo from "./Todo";
 
@@ -6,6 +8,11 @@ const TodoList = (props) => {
   console.log(data);
   return (
     <div className="text-center">
+      <Link to="/home">
+        <Button className="flex rounded-lg" type="success" htmlType="button">
+          Add
+        </Button>
+      </Link>
       <ul className="inline-block list-none">
         {data.map((todo) => (
           <div className="item">

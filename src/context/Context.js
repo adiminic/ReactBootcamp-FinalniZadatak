@@ -13,15 +13,37 @@ export const ContextAPI = ({ children }) => {
     });
   }, []);
 
-  const removeTask = (id) => {
+  const removeTodo = (id) => {
     setData(() => {
       return data.filter((p) => p.id !== id);
     });
   };
 
+  const returnMaxId = (data) => {
+    return Math.max(...data.map((p) => p.id));
+  };
+
+  const addTask = (userId, id, title, completed) => {
+    setData(() => {
+      return data.unshift({
+        userId: userId,
+        id: id,
+        title: title,
+        completed: completed,
+      });
+    });
+  };
+
   return (
     <GlobalContext.Provider
-      value={{ setIsLoggedIn, removeTask, data, isLoggedIn }}
+      value={{
+        setIsLoggedIn,
+        removeTodo,
+        addTask,
+        returnMaxId,
+        data,
+        isLoggedIn,
+      }}
     >
       {children}
     </GlobalContext.Provider>

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { fetchData } from "../fetch/fetchData";
+import React, { useCallback, useEffect, useState } from "react";
 
 export const GlobalContext = React.createContext();
 
@@ -7,11 +6,26 @@ export const ContextAPI = ({ children }) => {
   const [data, setData] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    fetchData().then((result) => {
-      setData(result.slice(0, 10));
-    });
+  const fetchData = useCallback(() => {
+    const url = "https://jsonplaceholder.typicode.com/todos";
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((result) => setData(result.slice(0, 10)))
+      .catch((error) => {
+        console.error(error);
+      });
   }, []);
+
+  useEffect(() => {
+    fetchData();
+
+    /*     fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((result) => {
+        setData(result.slice(0, 10));
+      }); */
+  }, [fetchData]);
 
   const removeTodo = (id) => {
     setData(() => {

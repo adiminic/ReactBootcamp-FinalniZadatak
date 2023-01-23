@@ -1,7 +1,7 @@
 import { Button } from "antd";
 import { useData } from "../utils/useData";
 
-const Todo = ({ userId, id, title, completed }) => {
+const Todo = ({ id, title, completed }) => {
   const { removeTodo } = useData();
   return (
     <div className="justify-items max-w-md p-4 m-5 bg-blue-100 rounded-xl">

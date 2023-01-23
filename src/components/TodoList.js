@@ -5,16 +5,15 @@ import Todo from "./Todo";
 
 const TodoList = (props) => {
   const { data } = useData();
-  console.log(data);
   return (
     <div className="text-center">
-      <Link to="/home">
+      {/*       <Link to="/add">
         <Button className="flex rounded-lg" type="success" htmlType="button">
           Add
         </Button>
-      </Link>
+      </Link> */}
       <ul className="inline-block list-none">
-        {data.map((todo) => (
+        {data?.map((todo) => (
           <div className="item">
             <li key={todo.id}>
               <Todo {...todo} />
